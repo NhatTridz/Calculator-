@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculator</title>
+  
+  <style>
+    body {
+      margin: 0;
+      box-sizing: border-box;
+      text-align: center;
+      background: #DCF1FF;
+      font-style: normal;
+      font-family: normal;
+    }
+    .box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid;
+      border-radius: 20px;
+      height: 75%;
+      width: 90%;
+      background: #DEECFF;
+      box-shadow: 
+      0 0 5px black;
+    }
+    .box h2 {
+      font-size: 1.6rem;
+      transition: 0.3s ease;
+      
+    }
+    .box h2:hover {
+      color: #4B4C55;
+      transform: scale(1.15);
+    }
+    .box #soA {
+     height: 2rem;
+     width: 15rem;
+     border: 1px solid;
+     border-radius: 10px;
+     text-align: center;
+     font-size: 1.2rem;
+     transition: 0.3s ease;
+     background: #7CB2FF;
+     box-shadow: 
+     0 0 5px black;
+     animation: bu1 2s ease infinite;
+    }
+    @keyframes bu1 {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.05);}
+      100% {transform: scale(1);}
+    }
+    .box #soA:hover {
+      color: white;
+      background: #357EE6;
+    }
+    .box #soB {
+      margin-top: 20px;
+      height: 2rem;
+      width: 15rem;
+      border: 1px solid;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.2rem;
+      transition: 0.3s ease;
+      background: #7CB2FF;
+      box-shadow: 
+      0 0 5px black;
+      animation: bu2 2s ease infinite;
+    }
+    @keyframes bu2 {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.05);}
+      100% {transform: scale(1);}
+    }
+    .box #soB:hover {
+      color: white;
+      background: #357EE6;
+    }
+    .box #gui {
+      margin-top: 20px;
+      height: 2.5rem;
+      width: 8.5rem;
+      border: 1px solid #398BFF;
+      border-radius: 10px;
+      background: #398BFF;
+      color: white;
+      transition: 0.5s ease;
+    }
+    .box #gui:hover {
+      transform: scale(1.2);
+      background: #80B4FF;
+      border: 1px solid #80B4FF;
+      color: black;
+      border-radius: 15px; 
+    }
+    #tb0 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+    #tb0:hover {
+      transform: scale(1.1);
+      color: #4B4C55;
+    }
+    .chung {
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+    #tb1 {
+      transition: 0.3s ease;
+      color: #2A627C;
+    }
+    #tb1:hover {
+      transform: scale(1.2);
+      color: #4B4C55;
+    }
+    #tb2 {
+      transition: 0.3s ease;
+      color: #2A7C60;
+    }
+    #tb2:hover {
+      transform: scale(1.2);
+      color: #4B4C55;
+    }
+    #tb3 {
+      transition: 0.3s ease;
+      color: #792E28;
+    }
+    #tb3:hover {
+      transform: scale(1.2);
+      color: #4B4C55;
+    }
+    #tb4 {
+      transition: 0.3s ease;
+      color: #796D28;
+    }
+    #tb4:hover {
+      transform: scale(1.2);
+      color: #4B4C55;
+    }
+    #ly {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+  <h2>Nhập Số Bạn Muốn Tính</h2>
+  <input id="soA" type="number" placeholder="Nhập Số A"/><br>
+  <input id="soB" type="number" placeholder="Nhập Số B"/><br>
+  <button id="gui">Bắt Đầu Tính</button>
+  <p id="tb0"></p>
+  <div id="tb1" class="chung"></div>
+  <div id="tb2" class="chung"></div>
+  <div id="tb3" class="chung"></div>
+  <div id="tb4" class="chung"></div>
+  <p id="ly">Lưu Ý:Nếu Số Quá Lớn Sẽ Chàn Ra Ngoài!</p>
+  </div>
+  
+  <script>
+    document.getElementById("gui").addEventListener("click", () => {
+      let A = +document.getElementById("soA").value;
+      let B = +document.getElementById("soB").value;
+      let tb = document.getElementById("tb0");
+      let kq1 = document.getElementById("tb1");
+      let kq2 = document.getElementById("tb2");
+      let kq3 = document.getElementById("tb3");
+      let kq4 = document.getElementById("tb4");
+      
+      let ketQuaTong = A + B;
+      let ketQuaHieu = A - B;
+      let ketQuaTich = A * B;
+      let ketQuaThuong = A / B;
+      
+      let hienKetQuaTong = document.createElement("p");
+      let hienKetQuaHieu = document.createElement("p");
+      let hienKetQuaTich = document.createElement("p");
+      let hienKetQuaThuong = document.createElement("p");
+      
+      hienKetQuaTong = ketQuaTong;
+      hienKetQuaHieu = ketQuaHieu;
+      hienKetQuaTich = ketQuaTich;
+      hienKetQuaThuong = ketQuaThuong;
+      
+      if (A === 0 && B === 0) {
+        tb.textContent = "Vui Lòng Nhập Đầy Đủ Số Để Tính "
+      } else if (A === 0) {
+        tb.textContent = "Vui Lòng Nhập Số A Để Tính Tiếp"
+
+     } else if (B === 0) {
+       tb.textContent = "Vui Lòng Nhập Số B Để Tính Tiếp"
+    } else {
+        tb.textContent = "Kết Quả"
+      kq1.textContent = A + " + " + B + " = " + hienKetQuaTong;
+      kq2.textContent = A + " - " + B + " = "  + hienKetQuaHieu;
+      kq3.textContent = A + " × " + B + " = " + hienKetQuaTich;
+      kq4.textContent = A + " ÷ " + B + " = " + hienKetQuaThuong;
+      }
+    })
+  </script>
+</body>
+
+</html>
